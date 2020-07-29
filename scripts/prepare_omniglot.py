@@ -84,15 +84,15 @@ for root, _, files in os.walk(raw_omniglot_location):
             zip_ref = zipfile.ZipFile(root + f, 'r')
             zip_ref.extractall(prepared_omniglot_location)
             zip_ref.close()
-
-print('Processing background set...')
-for root, alphabets, _ in os.walk(prepared_omniglot_location + 'images_background/'):
-    if alphabets != []:
-        for alphabet in sorted(alphabets):
-            handle_alphabet(root + alphabet)
-
-print('Processing evaluation set...')
-for root, alphabets, _ in os.walk(prepared_omniglot_location + 'images_evaluation/'):
-    if alphabets != []:
-        for alphabet in sorted(alphabets):
-            handle_alphabet(root + alphabet)
+#
+# print('Processing background set...')
+# for root, alphabets, _ in os.walk(prepared_omniglot_location + 'images_background/'):
+#     if alphabets != []:
+#         for alphabet in sorted(alphabets):
+#             handle_alphabet(root + alphabet)
+#
+# print('Processing evaluation set...')
+# for root, alphabets, _ in os.walk(prepared_omniglot_location + 'images_evaluation/'):
+#     if alphabets != []:
+#         for alphabet in sorted(alphabets):
+#             handle_alphabet(root + alphabet)
