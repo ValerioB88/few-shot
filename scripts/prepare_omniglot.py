@@ -87,10 +87,12 @@ for root, _, files in os.walk(raw_omniglot_location):
 
 print('Processing background set...')
 for root, alphabets, _ in os.walk(prepared_omniglot_location + 'images_background/'):
-    for alphabet in sorted(alphabets):
-        handle_alphabet(root + alphabet)
+    if alphabets != []:
+        for alphabet in sorted(alphabets):
+            handle_alphabet(root + alphabet)
 
 print('Processing evaluation set...')
 for root, alphabets, _ in os.walk(prepared_omniglot_location + 'images_evaluation/'):
-    for alphabet in sorted(alphabets):
-        handle_alphabet(root + alphabet)
+    if alphabets != []:
+        for alphabet in sorted(alphabets):
+            handle_alphabet(root + alphabet)
