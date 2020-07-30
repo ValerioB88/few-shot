@@ -92,6 +92,8 @@ class CallbackList(object):
 class Callback(object):
     def __init__(self):
         self.model = None
+        self.optimizer = None
+        self.loss_fn = None
 
     def set_params(self, params):
         self.params = params

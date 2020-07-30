@@ -73,26 +73,30 @@ def handle_alphabet(folder):
 
 
 # Clean up previous extraction
-rmdir(prepared_omniglot_location)
-mkdir(prepared_omniglot_location)
+# rmdir(prepared_omniglot_location)
+# mkdir(prepared_omniglot_location)
+#
+# # Unzip dataset
+# for root, _, files in os.walk(raw_omniglot_location):
+#     for f in files:
+#         if f in dataset_zip_files:
+#             print('Unzipping {}...'.format(f))
+#             zip_ref = zipfile.ZipFile(root + f, 'r')
+#             zip_ref.extractall(prepared_omniglot_location)
+#             zip_ref.close()
 
-# Unzip dataset
-for root, _, files in os.walk(raw_omniglot_location):
-    for f in files:
-        if f in dataset_zip_files:
-            print('Unzipping {}...'.format(f))
-            zip_ref = zipfile.ZipFile(root + f, 'r')
-            zip_ref.extractall(prepared_omniglot_location)
-            zip_ref.close()
-#
-# print('Processing background set...')
-# for root, alphabets, _ in os.walk(prepared_omniglot_location + 'images_background/'):
-#     if alphabets != []:
-#         for alphabet in sorted(alphabets):
-#             handle_alphabet(root + alphabet)
-#
-# print('Processing evaluation set...')
-# for root, alphabets, _ in os.walk(prepared_omniglot_location + 'images_evaluation/'):
-#     if alphabets != []:
-#         for alphabet in sorted(alphabets):
-#             handle_alphabet(root + alphabet)
+import glob
+print('Processing background set...')
+root = prepared_omniglot_location + 'images_background/'
+for alphabets in glob.glob(prepared_omniglot_location + 'images_background/**/'):
+    for alphabet in sorted(alphabets):
+            handle_alphabet(root + alphabet)
+
+for alphabets in glob.glob(prepared_omniglot_location + 'images_evaluation/**/'):
+    for alphabet in sorted(alphabets):
+        print(alphabet)
+print('Processing evaluation set...')
+for alphabets in glob.glob(prepared_omniglot_location + 'images_evaluation/**/'):
+    if alphabets != []:
+        for alphabet in sorted(alphabets):
+            handle_alphabet(root + alphabet)
