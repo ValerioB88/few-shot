@@ -101,7 +101,7 @@ def matching_net_episode(model: Module,
     return loss, y_pred
 
 
-def matching_net_predictions(attention: torch.Tensor, n: int, k: int, q: int) -> torch.Tensor:
+def matching_net_predictions(attention: torch.Tensor, n: int, k: int, q: int, use_cuda: bool) -> torch.Tensor:
     """Calculates Matching Network predictions based on equation (1) of the paper.
 
     The predictions are the weighted sum of the labels of the support set where the
@@ -129,6 +129,6 @@ def matching_net_predictions(attention: torch.Tensor, n: int, k: int, q: int) ->
     y = create_nshot_task_label(k, n).unsqueeze(-1)
     y_onehot = y_onehot.scatter(1, y, 1)
 
-    y_pred = torch.mm(attention, y_onehot.cuda().double())
+    y_pred = torch.mm(attention, y_onehot.cuda() if use_cuda else y_onehot)
 
     return y_pred
